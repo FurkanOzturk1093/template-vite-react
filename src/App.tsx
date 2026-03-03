@@ -4,21 +4,21 @@ function App() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column' as const,
       alignItems: 'center',
       justifyContent: 'center',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       color: '#fff',
       padding: '2rem',
-      position: 'relative',
-      overflow: 'hidden',
+      position: 'relative' as const,
+      overflow: 'hidden' as const,
     }}>
       {/* Glow */}
       <div style={{
-        position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)',
-        width: '600px', height: '300px',
+        position: 'absolute' as const, top: '20%', left: '50%', transform: 'translateX(-50%)',
+        width: 'min(600px, 90vw)', height: '300px',
         background: 'radial-gradient(ellipse, rgba(245,158,11,0.12) 0%, transparent 70%)',
-        pointerEvents: 'none',
+        pointerEvents: 'none' as const,
       }} />
 
       {/* Live badge */}
@@ -62,12 +62,14 @@ function App() {
       </h1>
 
       <p style={{
-        fontSize: '1.125rem',
+        fontSize: 'clamp(1rem, 2.5vw, 1.125rem)',
         color: 'rgba(255,255,255,0.45)',
         textAlign: 'center' as const,
         maxWidth: '480px',
+        width: '100%',
         lineHeight: 1.7,
         margin: '0 0 3rem',
+        padding: '0 1rem',
       }}>
         This Vite + React starter is deployed and running on your own VPS.
         Edit <code style={{ background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.9em', color: 'rgba(255,255,255,0.7)' }}>src/App.tsx</code> to get started.
@@ -78,11 +80,13 @@ function App() {
         href="https://deploywise.dev"
         target="_blank"
         rel="noopener noreferrer"
+        className="cta-button"
         style={{
           display: 'inline-flex', alignItems: 'center', gap: '10px',
           background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.35)',
           color: '#fcd34d', borderRadius: '12px', padding: '14px 28px',
           textDecoration: 'none', fontSize: '15px', fontWeight: 600,
+          transition: 'all 0.2s',
         }}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -101,6 +105,10 @@ function App() {
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #0a0a0a; }
+        .cta-button:hover {
+          background: rgba(245,158,11,0.22) !important;
+          border-color: rgba(245,158,11,0.6) !important;
+        }
       `}</style>
     </main>
   )
